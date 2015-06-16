@@ -28,6 +28,7 @@ cards:read | Can view all [cards](#card-object) and their information.
 cards:write | Can create and update any [card](#card-object).
 contacts:read | Can view all [contacts](#contact-object) and their information.
 contacts:write | Can create and update any [contact](#contact-object).
+phones:read | Can view all [phone](#phone-object) numbers and their information.
 transactions:read | Can view any [transaction](#transaction-object).
 transactions:write | Can create a [transaction](#transaction-object) from any card to any destination (another card or an external address), cancel and resend transactions.
 user:read | Can view the [user](#user-object) and their information.
