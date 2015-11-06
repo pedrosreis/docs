@@ -1,5 +1,27 @@
 # Entities
 
+## Account Object
+
+> An example account encoded in JSON looks like this:
+
+```json
+{
+  "currency": "USD",
+  "id": "bfef7422-9f3c-47e0-4d4b-569d92d29a5c",
+  "label": "My Chase card",
+  "status": "ok",
+  "type": "card"
+}
+```
+
+Property | Description
+--------- | -----------
+currency | The currency in which the account is denominated.
+id | A unique ID associated with the account.
+label | The display name of the account as chosen by the user.
+status | The current status of the account. Possible values are: `ok`, `failed`.
+type | The type of the account. Possible values are: `card`, `sepa`.
+
 ## Card Object
 
 > An example card encoded in JSON looks like this:
@@ -231,15 +253,15 @@ currency | The currency in which the amount and commission are expressed.
 rate | The exchange rate for this pair.
 
 ### Origin
-The origin has properties regarding how the transaction affects the account at origin of the funds:
+The origin has properties regarding how the transaction affects the origin of the funds:
 
 Property | Description
 --------- | -----------
 CardId | The ID of the card debited. Only visible to the user who sends the transaction.
-amount | The amount debited to the origin account, including commissions and fees.
-base | The amount to debit the origin account, before commissions or fees.
+amount | The amount debited, including commissions and fees.
+base | The amount to debit, before commissions or fees.
 commission | The commission charged by Uphold to process the transaction.
-currency | The currency of the funds at the origin acount.
+currency | The currency of the funds at the origin.
 description | The name of the sender.
 fee | The Bitcoin network Fee, if origin is in BTC but destination is not, or is a non-Uphold Bitcoin Address.
 rate | The rate for conversion between origin and destination, as expressed in the currency at origin (the inverse of `destination.rate`).
@@ -253,17 +275,17 @@ username | The username from the user that performed the transaction.
 
 
 ### Destination
-The destination of a transaction has its own set of properties describing how the destination account is affected, which include:
+The destination of a transaction has its own set of properties describing how the destination is affected, which include:
 
 Property | Description
 --------- | -----------
 CardId | The ID of the card credited. Only visible to the user who receives the transaction.
-amount | The amount credited to the destination account, including commissions and fees.
-base | The amount to credit the destination account, before commissions or fees.
+amount | The amount credited, including commissions and fees.
+base | The amount to credit, before commissions or fees.
 commission | The commission charged by Uphold to process the transaction. Commissions are only charged when currency is converted into a different denomination.
 currency | The denomination of the funds at the time they were sent/received.
 description | The name of the recipient. In the case where money is sent via email, the description will contain the email address of the recipient.
-fee | The Bitcoin network Fee, if destination is a BTC account but origin is not.
+fee | The Bitcoin network Fee, if destination is a BTC address but origin is not.
 rate | The rate for conversion between origin and destination, as expressed in the currency at destination (the inverse of `origin.rate`).
 type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
 
@@ -426,9 +448,9 @@ memberAt  | The date when the user has become a verified member.
 
 ### User Status
 
-We communicate a number of different user states through our API. At a high-level accounts can be in one of four states:
+We communicate a number of different user states through our API. At a high-level users can be in one of four states:
 
-* **pending** - This state is present while the user is creating an account.
+* **pending** - This state is present until the user completes the signup process.
 * **restricted** - When a user is in this state they are allowed to login to the application and receive money, but they are not permitted to initiate transactions. This state exists to allow users to satisfy additional data requirements.
 * **blocked** - This state is present when a user has violated our terms of service. In this state users are unable to login or access the product.
 * **ok** - Everything is ay-ok.
