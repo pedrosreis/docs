@@ -112,7 +112,7 @@ description | yes      | A human-readable description of this PAT.
 <aside class="notice">
   <strong>Import Notice</strong>: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme.
 
-  Additionally, if the account is secured with Two-Factor Authentication, the `X-Bitreserve-OTP` header is required.
+  Additionally, please note that the `X-Bitreserve-OTP` header is always required when creating a Personal Access Token.
 </aside>
 
 ### Revoking a PAT
